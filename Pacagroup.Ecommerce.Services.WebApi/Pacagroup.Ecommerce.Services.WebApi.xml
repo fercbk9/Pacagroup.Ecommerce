@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pacagroup.Ecommerce.Services.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController">
+            <summary>
+            CustomersController.
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.#ctor(Pacagroup.Ecommerce.Application.Interface.ICustomersApplication)">
+            <summary>
+            Ctor of CustomersController.
+            </summary>
+            <param name="customersApplication"></param>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.Insert(Pacagroup.Ecommerce.Application.DTO.CustomersDTO)">
+            <summary>
+            
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.Update(Pacagroup.Ecommerce.Application.DTO.CustomersDTO)">
+            <summary>
+            
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.Delete(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="customerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.Get(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="customerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.InsertAsync(Pacagroup.Ecommerce.Application.DTO.CustomersDTO)">
+            <summary>
+            InsertAsync.
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.UpdateAsync(Pacagroup.Ecommerce.Application.DTO.CustomersDTO)">
+            <summary>
+            UpdateAsync.
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.DeleteAsync(System.String)">
+            <summary>
+            DeleteAsync.
+            </summary>
+            <param name="customerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.GetAsync(System.String)">
+            <summary>
+            GetAsync.
+            </summary>
+            <param name="customerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.CustomersController.GetAllAsync">
+            <summary>
+            GetAllAsync.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Controllers.UsersController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.UsersController.#ctor(Pacagroup.Ecommerce.Application.Interface.IUsersApplication,Microsoft.Extensions.Options.IOptions{Pacagroup.Ecommerce.Services.WebApi.Helpers.AppSettings})">
+            <summary>
+            Constructor of the class.
+            </summary>
+            <param name="usersApplication"></param>
+            <param name="appSettings"></param>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Controllers.UsersController.Authenticate(Pacagroup.Ecommerce.Application.DTO.UsersDTO)">
+            <summary>
+            Autenticacion para login.
+            </summary>
+            <param name="usersDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Helpers.AppSettings">
+            <summary>
+            Clase helper para settings de login.
+            </summary>
+        </member>
+        <member name="P:Pacagroup.Ecommerce.Services.WebApi.Helpers.AppSettings.OriginCors">
+            <summary>
+            OriginCors
+            </summary>
+        </member>
+        <member name="P:Pacagroup.Ecommerce.Services.WebApi.Helpers.AppSettings.Secret">
+            <summary>
+            Secret
+            </summary>
+        </member>
+        <member name="P:Pacagroup.Ecommerce.Services.WebApi.Helpers.AppSettings.Issuer">
+            <summary>
+            Issuer
+            </summary>
+        </member>
+        <member name="P:Pacagroup.Ecommerce.Services.WebApi.Helpers.AppSettings.Audience">
+            <summary>
+            Audience
+            </summary>
+        </member>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Program">
+            <summary>
+            Program class.
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Program.Main(System.String[])">
+            <summary>
+            Main.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            CreateHostBuilder.
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Startup">
+            <summary>
+            StartUp class.
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Ctor of startup class.
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:Pacagroup.Ecommerce.Services.WebApi.Startup.Configuration">
+            <summary>
+            IConfiguration  Instance.
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configures the API.
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
