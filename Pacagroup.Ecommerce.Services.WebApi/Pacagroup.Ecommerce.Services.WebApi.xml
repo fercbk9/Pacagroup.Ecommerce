@@ -127,6 +127,69 @@
             Audience
             </summary>
         </member>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Modules.Authentication.AuthenticationExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Modules.Authentication.AuthenticationExtensions.AddAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Metodo de extension para autenticacion.
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Modules.Feature.FeatureExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Modules.Feature.FeatureExtensions.AddFeature(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Metdo de extension para añadir los CORS.
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Modules.Injections.InjectionExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Modules.Injections.InjectionExtensions.AddInjections(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Metodo de extension para añadir al configure services las inyecciones de dependencias.
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Modules.Mapper.MapperExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Modules.Mapper.MapperExtensions.AddMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Metodo de extension para Mapper.
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pacagroup.Ecommerce.Services.WebApi.Modules.Swagger.SwaggerExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Pacagroup.Ecommerce.Services.WebApi.Modules.Swagger.SwaggerExtensions.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Metodo de extension para addSwagger
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
         <member name="T:Pacagroup.Ecommerce.Services.WebApi.Program">
             <summary>
             Program class.

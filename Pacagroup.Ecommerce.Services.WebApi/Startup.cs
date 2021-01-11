@@ -30,6 +30,11 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Pacagroup.Ecommerce.Transversal.Logging;
+using Pacagroup.Ecommerce.Services.WebApi.Modules.Swagger;
+using Pacagroup.Ecommerce.Services.WebApi.Modules.Authentication;
+using Pacagroup.Ecommerce.Services.WebApi.Modules.Mapper;
+using Pacagroup.Ecommerce.Services.WebApi.Modules.Feature;
+using Pacagroup.Ecommerce.Services.WebApi.Modules.Injections;
 
 namespace Pacagroup.Ecommerce.Services.WebApi
 {
@@ -59,121 +64,11 @@ namespace Pacagroup.Ecommerce.Services.WebApi
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(x => x.AddProfile(new MappingsProfile()));
-            //Configuracion de CORS.
-            services.AddCors(op => op.AddPolicy(_myPolicy, o => 
-            {
-                o.WithOrigins(Configuration["Config:OriginCors"]);
-                o.AllowAnyHeader();
-                o.AllowAnyMethod();
-            }));
-
-            services.AddControllers().AddNewtonsoftJson(options =>
-            {
-                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-            });
-            var appSettingsSection = Configuration.GetSection("Config");
-            services.Configure<AppSettings>(appSettingsSection);
-            var appSettings = appSettingsSection.Get<AppSettings>();
-
-
-            services.AddSingleton(Configuration);
-            services.AddSingleton<IConnectionFactory,ConnectionFactory>();
-            services.AddScoped<ICustomersApplication, CustomersApplication>();
-            services.AddScoped<ICustomersDomain, CustomersDomain>();
-            services.AddScoped<ICustomersRepository, CustomerRepository>();
-            services.AddScoped<IUsersApplication, UsersApplication>();
-            services.AddScoped<IUsersDomain, UsersDomain>();
-            services.AddScoped<IUsersRepository, UsersRepository>();
-            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
-
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            var issuer = appSettings.Issuer;
-            var audience = appSettings.Audience;
-
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.Events = new JwtBearerEvents
-                {
-                    OnTokenValidated = context =>
-                    {
-                        var userId = int.Parse(context.Principal.Identity.Name);
-                        return Task.CompletedTask;
-                    },
-                    OnAuthenticationFailed = context =>
-                    {
-                        if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-                        {
-                            context.Response.Headers.Add("Token-Expired", "true");
-                        }
-                        return Task.CompletedTask;
-                    }
-                };
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = false;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidIssuer = issuer,
-                    ValidateAudience = true,
-                    ValidAudience = audience,
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero
-                };
-            });
-
-            //Registro de Swagger
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
-                {
-                    Version = "v1",
-                    Title = "Pacagroup Tech Services API Market",
-                    Description = "Aplicacion de prueba para pacagroup",
-                    Contact = new Microsoft.OpenApi.Models.OpenApiContact()
-                    {
-                        Name = "Fernando Martinez Pellicer",
-                        Email = "fer-m.p@hotmail.com",
-                        Url = new Uri("https://pacagroup.com")
-                    },
-                    License = new Microsoft.OpenApi.Models.OpenApiLicense()
-                    {
-                        Name = "LICX",
-                        Url = new Uri("https://example.com/license")
-                    }
-                });
-
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-                c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-                {
-                    Description = "Descripcion de la API key",
-                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-                    Name = "Authorization"
-                });
-                c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
-                {
-                    { new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-                        {
-                            Reference = new Microsoft.OpenApi.Models.OpenApiReference
-                            {
-                                Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[] {}
-                    }                
-                });
-            });
+            services.AddMapper();
+            services.AddFeature(Configuration);
+            services.AddInjections(Configuration);
+            services.AddAuthentication(Configuration);
+            services.AddSwagger();
         }
 
         /// <summary>
